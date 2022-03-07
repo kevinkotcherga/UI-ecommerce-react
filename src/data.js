@@ -21,3 +21,72 @@ export const sliderItems = [
 		bg: 'fcf1ed',
 	},
 ];
+
+export const categories = [
+	{
+		id: 1,
+		img: 'https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+		title: 'CHEMISES',
+	},
+	{
+		id: 2,
+		img: 'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+		title: 'TOPS',
+	},
+	{
+		id: 3,
+		img: 'https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+		title: 'VESTES LÉGÈRES',
+	},
+];
+
+export const popularProducts = [
+	{
+		id: 1,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/outfit/S20/27076326_43-99999999_01.jpg?ts=1645715181013&imwidth=462&imdensity=2',
+	},
+	{
+		id: 2,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27015930_32.jpg?ts=1645192293738&imwidth=462&imdensity=2',
+	},
+	{
+		id: 3,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27075770_99_D2.jpg?ts=1643907107318&imwidth=462&imdensity=2',
+	},
+	{
+		id: 4,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/outfit/S20/27025773_99-99999999_01.jpg?ts=1646323608026&imwidth=462&imdensity=2',
+	},
+	{
+		id: 5,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27024022_99.jpg?ts=1643903580910&imwidth=462&imdensity=2',
+	},
+	{
+		id: 6,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27064040_99.jpg?ts=1642438686975&imwidth=462&imdensity=2',
+	},
+	{
+		id: 7,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27071093_99.jpg?ts=1637143589313&imwidth=462&imdensity=2',
+	},
+	{
+		id: 8,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/outfit/S20/27062526_08-99999999_01.jpg?ts=1639673195206&imwidth=462&imdensity=2',
+	},
+	{
+		id: 9,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27061155_70.jpg?ts=1639500340001&imwidth=462&imdensity=2',
+	},
+	{
+		id: 10,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27071502_70.jpg?ts=1639577162607&imwidth=462&imdensity=2',
+	},
+	{
+		id: 11,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27044035_85_D5.jpg?ts=1643983135333&imwidth=462&imdensity=2',
+	},
+	{
+		id: 12,
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27053265_TO_D2.jpg?ts=1640786755173&imwidth=462&imdensity=2',
+	},
+];

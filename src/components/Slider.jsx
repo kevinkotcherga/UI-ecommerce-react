@@ -1,17 +1,19 @@
 import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from "@material-ui/icons"
 import { useState } from "react"
-import styledComponents from "styled-components"
+import styled from "styled-components"
 import { sliderItems } from "../data"
+import { mobile } from "../responsive"
 
-const Container = styledComponents.div`
+const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   position: relative;
   overflow: hidden;
+  ${mobile({ display: "none" })}
 `
 
-const Arrow = styledComponents.div`
+const Arrow = styled.div`
   width:50px;
   height:50px;
   background-color: #fff7f7;
@@ -30,44 +32,44 @@ const Arrow = styledComponents.div`
   z-index: 2;
 `
 
-const Wrapper = styledComponents.div`
+const Wrapper = styled.div`
   height: 100%;
   display:flex;
   transition: all 1.5s ease;
   transform: translateX(${props => props.slideIndex * -100}vw)
 `
 
-const Slide = styledComponents.div`
+const Slide = styled.div`
   width: 100vw;
   height: 100vh;
   display:flex;
   align-items: center;
   background-color: #${props => props.bg}
   `
-const ImgContainer = styledComponents.div`
+const ImgContainer = styled.div`
   flex:1;
   height: 100%;
 `
-const Image = styledComponents.img`
+const Image = styled.img`
   height: 80%;
 `
 
-const InfoContainer = styledComponents.div`
+const InfoContainer = styled.div`
   flex:1;
   padding: 50px;
 `
 
-const Title = styledComponents.h1`
+const Title = styled.h1`
   font-size: 70px;
 `
-const Description = styledComponents.p`
+const Description = styled.p`
   margin: 50px 0px;
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 3px;
 
 `
-const Button = styledComponents.button`
+const Button = styled.button`
   padding: 10px;
   font-size: 20px;
   background-color: transparent;

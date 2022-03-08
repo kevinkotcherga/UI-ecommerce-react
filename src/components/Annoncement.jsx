@@ -1,6 +1,6 @@
-import styledComponents from "styled-components"
+import styled from "styled-components"
 
-const Container = styledComponents.div`
+const Container = styled.div`
   height: 30px;
   background-color: teal;
   color: white;

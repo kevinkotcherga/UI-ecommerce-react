@@ -25,21 +25,21 @@ export const sliderItems = [
 export const categories = [
 	{
 		id: 1,
-		img: 'https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-		title: 'CHEMISES',
-		cat: 'women',
+		img: 'https://staticpages.mngbcn.com/edits/SS22/CAT022022DENIM/assets/images/prices/b_denim_0222_5.jpg?rand=5795148&imwidth=932&imdensity=1.375',
+		title: 'HOMMES',
+		cat: 'homme',
 	},
 	{
 		id: 2,
-		img: 'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-		title: 'TOPS',
-		cat: 'coat',
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27035747_05_D1.jpg?ts=1643907107318&imwidth=647&imdensity=2',
+		title: 'FÊTES ET ÉVÉNEMENTS',
+		cat: 'fetes-et-evenements',
 	},
 	{
 		id: 3,
-		img: 'https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-		title: 'VESTES LÉGÈRES',
-		cat: 'jeans',
+		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/S20/27074037_99_D6.jpg?ts=1644234741629&imwidth=647&imdensity=2',
+		title: 'VESTES ET BLAZERS',
+		cat: 'vestes-et-blazers',
 	},
 ];
 
@@ -47,6 +47,7 @@ export const popularProducts = [
 	{
 		id: 1,
 		img: 'https://st.mngbcn.com/rcs/pics/static/T2/fotos/outfit/S20/27076326_43-99999999_01.jpg?ts=1645715181013&imwidth=462&imdensity=2',
+    color: 'jaune'
 	},
 	{
 		id: 2,

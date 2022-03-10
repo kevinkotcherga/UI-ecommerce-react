@@ -1,10 +1,13 @@
 import { Add, Remove } from "@material-ui/icons"
+import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 import Annoncement from "../components/Annoncement"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import Newsletter from "../components/Newsletter"
 import { mobile } from "../responsive"
+import { publicRequest } from "../requestMethods";
 
 const Container = styled.div`
 
@@ -121,13 +124,27 @@ const Button  = styled.button`
 `
 
 const Product = () => {
+  const location = useLocation();
+  const id = location.pathname.split('/')[2];
+  const [product, setProduct] = useState({});
+
+  useEffect(()=>{
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get('/products/find/' + id);
+        setProduct(res.data);
+      } catch {}
+    };
+    getProduct()
+  }, [id]);
+
   return (
     <Container>
       <Navbar />
       <Annoncement />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+          <Image src={product.img} />
         </ImgContainer>
         <InfoContainer>
           <Title>Denim Jumpsuit</Title>

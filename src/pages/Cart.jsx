@@ -1,5 +1,6 @@
 import { Add, Remove } from '@material-ui/icons'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import Annoncement from '../components/Annoncement'
 import Footer from '../components/Footer'
@@ -172,6 +173,7 @@ const ProductPrice = styled.div`
 `
 
 const Cart = () => {
+  const cart = useSelector( state => state.cart )
   return (
     <Container>
       <Navbar />
@@ -188,51 +190,34 @@ const Cart = () => {
         </Top>
         <Bottom>
           <Info>
-            <Product>
+            {cart.products.map(product=>(
+              <Product>
               <ProductDetail>
-                <Image src="https://images.unsplash.com/photo-1608667508764-33cf0726b13a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" />
+                <Image src={product.img} />
                 <Details>
-                  <ProductName><b>Produit:</b>JESSIE THUNDER</ProductName>
-                  <ProductId><b>ID:</b>123456</ProductId>
-                  <ProductColor color="pink"/>
-                  <ProductSize><b>Size:</b>38</ProductSize>
+                  <ProductName><b>Produit:</b>{product.title}</ProductName>
+                  <ProductId><b>ID:</b>{product._id}</ProductId>
+                  <ProductColor color={product.color}/>
+                  <ProductSize><b>Size:</b>{product.size}</ProductSize>
                 </Details>
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
                   <Add />
-                  <ProductAmount>2</ProductAmount>
+                  <ProductAmount>{product.quantity}</ProductAmount>
                   <Remove />
                 </ProductAmountContainer>
-                <ProductPrice>114€</ProductPrice>
+                <ProductPrice>{product.price * product.quantity}€</ProductPrice>
               </PriceDetail>
             </Product>
+              ))}
             <Hr/>
-            <Product>
-              <ProductDetail>
-                <Image src="https://images.unsplash.com/photo-1610197251868-2adbd6db7466?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=825&q=80" />
-                <Details>
-                  <ProductName><b>Produit:</b>NOME PULL</ProductName>
-                  <ProductId><b>ID:</b>123456</ProductId>
-                  <ProductColor color="gray"/>
-                  <ProductSize><b>Size:</b>S</ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>50€</ProductPrice>
-              </PriceDetail>
-            </Product>
           </Info>
           <Summary>
             <SummaryTitle>PANIER</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Sous Total</SummaryItemText>
-              <SummaryItemText>164€</SummaryItemText>
+              <SummaryItemText>{cart.total}</SummaryItemText>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimation d'envoi</SummaryItemText>
@@ -244,7 +229,7 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemText>164€</SummaryItemText>
+              <SummaryItemText>{cart.total}</SummaryItemText>
             </SummaryItem>
             <Button>PAIEMENT</Button>
           </Summary>

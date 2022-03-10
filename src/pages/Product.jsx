@@ -7,7 +7,10 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import Newsletter from "../components/Newsletter"
 import { mobile } from "../responsive"
-import { publicRequest } from "../requestMethods";
+import { publicRequest } from "../requestMethods"
+import axios from "axios"
+import { addProduct } from '../redux/cartRedux'
+import { useDispatch } from "react-redux"
 
 const Container = styled.div`
 
@@ -127,6 +130,10 @@ const Product = () => {
   const location = useLocation();
   const id = location.pathname.split('/')[2];
   const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  const dispatch = useDispatch()
 
   useEffect(()=>{
     const getProduct = async () => {
@@ -138,6 +145,18 @@ const Product = () => {
     getProduct()
   }, [id]);
 
+  const handleQuantity = (type) => {
+    if(type === "dec"){
+      quantity > 1 && setQuantity(quantity -1)
+    } else {
+      setQuantity(quantity +1)
+    }
+  };
+
+  const handleClick = () => {
+    dispatch(addProduct({ ...product, quantity, color, size }));
+  };
+
   return (
     <Container>
       <Navbar />
@@ -147,35 +166,32 @@ const Product = () => {
           <Image src={product.img} />
         </ImgContainer>
         <InfoContainer>
-          <Title>Denim Jumpsuit</Title>
-          <Desc>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate eius unde necessitatibus reprehenderit doloremque dolore rerum, beatae non possimus cum, voluptatibus repellat sit neque tenetur, corporis deserunt laborum! Rerum, pariatur!</Desc>
-          <Price>25€</Price>
+          <Title>{product.title}</Title>
+          <Desc>{product.desc}</Desc>
+          <Price>{product.price}€</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Couleur</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
+              {product.color?.map((c) => (
+                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
+              ))}
             </Filter>
             <Filter>
               <FilterTitle>Taille</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
-                <FilterSizeOption>XXL</FilterSizeOption>
+              <FilterSize oncChange={(e) => setSize(e.target.value)} >
+                {product.size?.map((s) => (
+                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={ () => handleQuantity("dec") }/>
+              <Amount>{quantity}</Amount>
+              <Add onClick={ () => handleQuantity("inc") }/>
             </AmountContainer>
-            <Button>AJOUTER AU PANIER</Button>
+            <Button onClick={handleClick} >AJOUTER AU PANIER</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

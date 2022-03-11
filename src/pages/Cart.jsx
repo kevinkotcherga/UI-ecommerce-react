@@ -1,11 +1,16 @@
 import { Add, Remove } from '@material-ui/icons'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import Annoncement from '../components/Annoncement'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import { mobile } from '../responsive'
+import StripeCheckout from 'react-stripe-checkout'
+import { userRequest } from '../requestMethods'
+import { useHistory } from 'react-router-dom'
+
+const KEY = 'pk_test_51KbMuMGV1UkxUwjy9Gr1xwExbCs97VVH0ugjzRhiF6RnfCzV3xeyNr1ITBcuDJemBeO38ZpaYVNvddHf7QAp55tu00cG8TJjMT'
 
 const Container = styled.div`
 
@@ -174,6 +179,26 @@ const ProductPrice = styled.div`
 
 const Cart = () => {
   const cart = useSelector( state => state.cart )
+
+  const [stripeToken, setStripeToken] = useState(null)
+  const history = useHistory()
+  const onToken = (token) => {
+    setStripeToken(token)
+  };
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await userRequest.post('/checkout/payment', {
+          tokenId: stripeToken.id,
+          amount: cart.total * 100,
+        });
+          history.push('/success', {data:res.data});
+      } catch {}
+    };
+    stripeToken && cart.total >= 1 && makeRequest();
+  }, [ stripeToken, cart.total, history ]);
+
   return (
     <Container>
       <Navbar />
@@ -217,7 +242,7 @@ const Cart = () => {
             <SummaryTitle>PANIER</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Sous Total</SummaryItemText>
-              <SummaryItemText>{cart.total}</SummaryItemText>
+              <SummaryItemText>{cart.total}€</SummaryItemText>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimation d'envoi</SummaryItemText>
@@ -229,9 +254,20 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemText>{cart.total}</SummaryItemText>
+              <SummaryItemText>{cart.total}€</SummaryItemText>
             </SummaryItem>
-            <Button>PAIEMENT</Button>
+              <StripeCheckout
+                name="Shop."
+                image="https://images.unsplash.com/photo-1622633721982-9f9405915bc9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=814&q=80"
+                billingAddress
+                shippingAddress
+                description={`Votre total est de ${cart.total}€`}
+                amount={cart.total*100}
+                token={onToken}
+                stripeKey={KEY}
+                >
+              <Button>PAIEMENT</Button>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
